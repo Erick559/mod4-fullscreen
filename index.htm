@@ -3,10 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1 ,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>mod4_v1</title>
     <style>
-        html, body, #SBContentWrapper {
+        html, body, #SB4ContentWrapper {
             margin: 0;
             padding: 0;
             font-family: Helvetica, Arial, Verdana, sans-serif;
@@ -19,70 +19,88 @@
             -ms-user-select: none;
             user-select: none;
             position: absolute;
-            left: 0px;
-            top: 0px;
-            
+            left: 0;
+            top: 0;
+        }
+
+        /* Fullscreen CSS Adjustments */
+        #SB4ContentWrapper:-webkit-full-screen {
+            width: 100% !important;
+            height: 100% !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            overflow: hidden !important;
+        }
+
+        #SB4ContentWrapper:-moz-full-screen {
+            width: 100% !important;
+            height: 100% !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            overflow: hidden !important;
+        }
+
+        #SB4ContentWrapper:fullscreen {
+            width: 100% !important;
+            height: 100% !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            overflow: hidden !important;
+        }
+
+        /* Ensure iframe fills the wrapper */
+        #SB4ContentWrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
-    
 </head>
 <body>
-<div id="SBContentWrapper" style="overflow: hidden;"></div>
-<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 2,"scaleDesktop": 2}'></script>
+<div id="SB4ContentWrapper" style="overflow: hidden;"></div>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SB4ContentWrapper" data-config='{ "scaleMobile": 2,"scaleDesktop": 2}'></script>
 
 <script>
-    // Unified function to toggle fullscreen mode
-    function toggleFullscreen(iframe) {
-        // Check if the document is already in fullscreen mode
-        if (!document.fullscreenElement &&    // Standard browsers
-            !document.mozFullScreenElement && // Firefox
-            !document.webkitFullscreenElement && // Chrome, Safari, Opera
-            !document.msFullscreenElement) { // IE/Edge
-            // Enter fullscreen mode
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) { // Firefox
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) { // IE/Edge
-                iframe.msRequestFullscreen();
+    function toggleFullscreen(element) {
+        if (!document.fullscreenElement &&
+            !document.mozFullScreenElement &&
+            !document.webkitFullscreenElement &&
+            !document.msFullscreenElement) {
+            // Entering fullscreen
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
             }
         } else {
-            // Exit fullscreen mode
+            // Exiting fullscreen
             if (document.exitFullscreen) {
                 document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) { // Firefox
+            } else if (document.mozCancelFullScreen) {
                 document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+            } else if (document.webkitExitFullscreen) {
                 document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { // IE/Edge
+            } else if (document.msExitFullscreen) {
                 document.msExitFullscreen();
             }
         }
     }
 
-    // Listen for messages from the iframe
     window.addEventListener('message', function(event) {
-        // For security, check the origin of the message if necessary (optional)
-        // if (event.origin !== 'http://your-domain.com') return;
-
-        // If the message is 'fullscreen', toggle fullscreen for the iframe
         if (event.data === 'fullscreen') {
-            const iframe = document.querySelector('html');
-            toggleFullscreen(iframe);
+            const wrapper = document.getElementById('SB4ContentWrapper');
+            if (wrapper) {
+                toggleFullscreen(wrapper);
+            }
         }
     });
 </script>
 </body>
-
 </html>
-<!-- SB4_Lesson_INFO
-BUILD:202405011118 
-TYPE:sb
-ID:l5T65P8M8DFTEJB918A075DLUMK
-VER:5.1.2
-DATE:Tue Feb 18 10:20:55 EAT 2025
-LESSON_WIDTH:1280
-LESSON_HEIGHT:720
--->
