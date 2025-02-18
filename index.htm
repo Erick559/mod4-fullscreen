@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1 ,user-scalable=no">
+    <title>mod4_v1</title>
+    <style>
+        html, body, #SBContentWrapper {
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, Verdana, sans-serif;
+            height: 100%;
+            width: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            
+        }
+    </style>
+    
+</head>
+<body>
+<div id="SBContentWrapper" style="overflow: hidden;"></div>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 2,"scaleDesktop": 2}'></script>
+
+<script>
+    // Unified function to toggle fullscreen mode
+    function toggleFullscreen(iframe) {
+        // Check if the document is already in fullscreen mode
+        if (!document.fullscreenElement &&    // Standard browsers
+            !document.mozFullScreenElement && // Firefox
+            !document.webkitFullscreenElement && // Chrome, Safari, Opera
+            !document.msFullscreenElement) { // IE/Edge
+            // Enter fullscreen mode
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        } else {
+            // Exit fullscreen mode
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    // Listen for messages from the iframe
+    window.addEventListener('message', function(event) {
+        // For security, check the origin of the message if necessary (optional)
+        // if (event.origin !== 'http://your-domain.com') return;
+
+        // If the message is 'fullscreen', toggle fullscreen for the iframe
+        if (event.data === 'fullscreen') {
+            const iframe = document.getElementById('SBContentWrapper');
+            toggleFullscreen(iframe);
+        }
+    });
+</script>
+</body>
+
+</html>
+<!-- SB4_Lesson_INFO
+BUILD:202405011118 
+TYPE:sb
+ID:l5T65P8M8DFTEJB918A075DLUMK
+VER:5.1.2
+DATE:Tue Feb 18 10:20:55 EAT 2025
+LESSON_WIDTH:1280
+LESSON_HEIGHT:720
+-->
