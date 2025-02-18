@@ -23,45 +23,53 @@
             top: 0;
         }
 
-        /* Fullscreen CSS Adjustments */
-        #SB4ContentWrapper:-webkit-full-screen {
-            width: 100% !important;
-            height: 100% !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            overflow: hidden !important;
-        }
+        @media only screen and (max-width:650px) {
+            /* Fullscreen CSS Adjustments */
+            #SB4ContentWrapper:-webkit-full-screen {
+                width: 100% !important;
+                height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                /* overflow: hidden !important; */
+            }
 
-        #SB4ContentWrapper:-moz-full-screen {
-            width: 100% !important;
-            height: 100% !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            overflow: hidden !important;
-        }
+            #SB4ContentWrapper:-moz-full-screen {
+                width: 100% !important;
+                height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                /* overflow: hidden !important; */
+            }
 
-        #SB4ContentWrapper:fullscreen {
-            width: 100% !important;
-            height: 100% !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            overflow: hidden !important;
-        }
+            #SB4ContentWrapper:fullscreen {
+                width: 100% !important;
+                height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                /* overflow: hidden !important; */
+            }
 
-        /* Ensure iframe fills the wrapper */
-        #SB4ContentWrapper:fullscreen iframe {
-            width: 100% !important;
-            height: 100% !important;
-            border: none !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            overflow: hidden !important;
+            /* Ensure iframe fills the wrapper */
+            #SB4ContentWrapper:fullscreen iframe {
+                width: 100% !important;
+                height: 100% !important;
+                border: none !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                /* overflow: hidden !important; */
+            }   
         }
     </style>
 </head>
