@@ -52,10 +52,14 @@
         }
 
         /* Ensure iframe fills the wrapper */
-        #SB4ContentWrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        #SB4ContentWrapper:fullscreen iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            overflow: hidden !important;
         }
     </style>
 </head>
