@@ -80,18 +80,18 @@
         }
     }
 
-    function adjustFullscreenHeight() {
-        const wrapper = document.getElementById('SB4Content');
-        const sbWrapper = document.getElementById('SBContentWrapper');
-        if (document.fullscreenElement) {
-            // wrapper.style.height = `${window.innerHeight}px`;
-            wrapper.style.width = `${window.innerWidth * 3 }px`;
-        }
-    }
+    // function adjustFullscreenHeight() {
+    //     const wrapper = document.getElementById('SB4Content');
+    //     const sbWrapper = document.getElementById('SBContentWrapper');
+    //     if (document.fullscreenElement) {
+    //         // wrapper.style.height = `${window.innerHeight}px`;
+    //         wrapper.style.width = `${window.innerWidth * 3 }px`;
+    //     }
+    // }
 
-    document.addEventListener('fullscreenchange', adjustFullscreenHeight);
-    document.addEventListener('webkitfullscreenchange', adjustFullscreenHeight);
-    document.addEventListener('mozfullscreenchange', adjustFullscreenHeight);
+    // document.addEventListener('fullscreenchange', adjustFullscreenHeight);
+    // document.addEventListener('webkitfullscreenchange', adjustFullscreenHeight);
+    // document.addEventListener('mozfullscreenchange', adjustFullscreenHeight);
 
     window.addEventListener('message', function(event) {
         if (event.data === 'fullscreen') {
