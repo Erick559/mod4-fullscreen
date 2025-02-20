@@ -23,8 +23,8 @@
             top: 0;
         }
 
-        @media only screen and (max-width:650px) {
-            /* Fullscreen CSS Adjustments */
+        /* @media only screen and (max-width:650px) {
+
             #SB4ContentWrapper:-webkit-full-screen {
                 width: 100% !important;
                 height: 100% !important;
@@ -33,7 +33,6 @@
                 left: 0 !important;
                 right: 0 !important;
                 bottom: 0 !important;
-                /* overflow: hidden !important; */
             }
 
             #SB4ContentWrapper:-moz-full-screen {
@@ -44,7 +43,6 @@
                 left: 0 !important;
                 right: 0 !important;
                 bottom: 0 !important;
-                /* overflow: hidden !important; */
             }
 
             #SB4ContentWrapper:fullscreen {
@@ -55,22 +53,18 @@
                 left: 0 !important;
                 right: 0 !important;
                 bottom: 0 !important;
-                /* overflow: hidden !important; */
             }
 
-            /* Ensure iframe fills the wrapper */
             #SB4ContentWrapper iframe {
                 width: 100% !important;
                 height: 100% !important;
                 border: none !important;
             }   
-        }
+        } */
     </style>
 </head>
 <body>
 <div id="SB4ContentWrapper" style="overflow: hidden;"></div>
-<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SB4ContentWrapper" data-config='{ "scaleMobile": 2,"scaleDesktop": 2}'></script>
-
 <script>
     function toggleFullscreen(element) {
         if (!document.fullscreenElement &&
@@ -110,5 +104,6 @@
         }
     });
 </script>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SB4ContentWrapper" data-config='{ "scaleMobile": 2,"scaleDesktop": 2}'></script>
 </body>
 </html>
