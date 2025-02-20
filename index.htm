@@ -40,8 +40,8 @@
             }
 
             #SBContentWrapper:fullscreen iframe {
-                width: 100vh !important;
-                height: 100vw !important;
+                /* width: 100vh !important;
+                height: 100vw !important; */
                 transform: scale(5); /* Override any scaling */
                 object-fit: cover !important;
             }
@@ -84,8 +84,8 @@
         const wrapper = document.getElementById('SB4Content');
         const sbWrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement) {
-            wrapper.style.height = `100vh`;
-            wrapper.style.width = `100vw`;
+            wrapper.style.height = `${sbWrapper.offsetHeight}px`;
+            wrapper.style.width = `${sbWrapper.offsetWidth}px`;
         }
     }
 
