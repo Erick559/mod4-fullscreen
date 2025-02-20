@@ -49,7 +49,7 @@
     </style>
 </head>
 <body>
-<div id="SBContentWrapper"></div>
+<div id="SBContentWrapper" style="overflow: hidden;"></div>
 <script>
     function toggleFullscreen(element) {
         if (!document.fullscreenElement &&
@@ -84,8 +84,8 @@
         const wrapper = document.getElementById('SB4Content');
         const sbWrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement) {
-            wrapper.style.height = `${window.innerHeight}px`;
-            wrapper.style.width = `${window.innerWidth}px`;
+            wrapper.style.height = `${sbWrapper.offsetHeight}px`;
+            wrapper.style.width = `${sbWrapper.offsetHeight}px`;
         }
     }
 
