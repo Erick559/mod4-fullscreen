@@ -119,11 +119,11 @@
         const wrapper = document.getElementById('SB4Content');
         const sbWrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement) {
-            sbWrapper.style.height = `${window.innerHeight}px`;
-            sbWrapper.style.width = `${window.innerWidth}px`;
+            sbWrapper.style.height = `${window.outerHeight}px`;
+            sbWrapper.style.width = `${window.outerWidth}px`;
 
-            wrapper.style.height = `${window.innerHeight}px`;
-            wrapper.style.width = `${window.innerWidth}px`;
+            wrapper.style.height = `${window.outerHeight}px`;
+            wrapper.style.width = `${window.outerWidth}px`;
         }
     }
 
