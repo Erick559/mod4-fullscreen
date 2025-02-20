@@ -27,8 +27,8 @@
 
         @media only screen and (max-width: 650px) {
             #SBContentWrapper:fullscreen {
-                width: 100vh !important;
-                height: 100vh !important;
+                width: 100% !important;
+                height: 100% !important;
                 top: 0 !important;
                 left: 0 !important;
                 margin: 0 !important;
@@ -117,8 +117,12 @@
 
     function adjustFullscreenHeight() {
         const wrapper = document.getElementById('SB4Content');
+        const sbWrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement) {
-            wrapper.style.height = `${window.innerHeight}px`
+            sbWrapper.style.height = `${window.innerHeight}px`;
+            sbWrapper.style.width = `${window.innerWidth}px`;
+
+            wrapper.style.height = `${window.innerHeight}px`;
             wrapper.style.width = `${window.innerWidth}px`;
         }
     }
