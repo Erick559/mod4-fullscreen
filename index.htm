@@ -116,9 +116,9 @@
     }
 
     function adjustFullscreenHeight() {
-        const wrapper = document.getElementById('SB4ContentWrapper');
+        const wrapper = document.getElementById('iframe');
         if (document.fullscreenElement) {
-            wrapper.style.height = `${window.innerHeight}px`;
+            wrapper.style.height = `${window.innerWidth}px`;
         }
     }
 
