@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>mod4_v1</title>
     <style>
         html, body, #SBContentWrapper {
@@ -33,6 +33,10 @@
                 left: 0 !important;
                 margin: 0 !important;
                 padding: 0 !important;
+            }
+
+            #SBContentWrapper:fullscreen {
+                overflow: visible;
             }
 
             #SBContentWrapper:fullscreen iframe {
@@ -80,8 +84,8 @@
         const wrapper = document.getElementById('SB4Content');
         const sbWrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement) {
-            wrapper.style.height = `20000px`;
-            wrapper.style.width = `10000px`;
+            wrapper.style.height = `${window.innerHeight}px`;
+            wrapper.style.width = `${window.innerWidth}px`;
         }
     }
 
