@@ -78,9 +78,10 @@
 
     function adjustFullscreenHeight() {
         const wrapper = document.getElementById('SB4Content');
+        const sbWrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement) {
-            wrapper.style.height = `${window.outerHeight}px`;
-            wrapper.style.width = `${window.outerWidth}px`;
+            wrapper.style.height = `${sbWrapper.offsetHeight}px`;
+            wrapper.style.width = `${sbWrapper.offsetWidth}px`;
         }
     }
 
