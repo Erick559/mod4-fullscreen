@@ -76,21 +76,21 @@
         }
     }
 
-    // function adjustFullscreenHeight() {
-    //     const wrapper = document.getElementById('SB4Content');
-    //     const sbWrapper = document.getElementById('SBContentWrapper');
-    //     if (document.fullscreenElement) {
-    //         sbWrapper.style.height = `${window.outerHeight}px`;
-    //         sbWrapper.style.width = `${window.outerWidth}px`;
+    function adjustFullscreenHeight() {
+        const wrapper = document.getElementById('SB4Content');
+        const sbWrapper = document.getElementById('SBContentWrapper');
+        if (document.fullscreenElement) {
+            sbWrapper.style.height = `${window.outerHeight}px`;
+            sbWrapper.style.width = `${window.outerWidth}px`;
 
-    //         wrapper.style.height = `${window.outerHeight}px`;
-    //         wrapper.style.width = `${window.outerWidth}px`;
-    //     }
-    // }
+            wrapper.style.height = `${window.outerHeight}px`;
+            wrapper.style.width = `${window.outerWidth}px`;
+        }
+    }
 
-    // document.addEventListener('fullscreenchange', adjustFullscreenHeight);
-    // document.addEventListener('webkitfullscreenchange', adjustFullscreenHeight);
-    // document.addEventListener('mozfullscreenchange', adjustFullscreenHeight);
+    document.addEventListener('fullscreenchange', adjustFullscreenHeight);
+    document.addEventListener('webkitfullscreenchange', adjustFullscreenHeight);
+    document.addEventListener('mozfullscreenchange', adjustFullscreenHeight);
 
     window.addEventListener('message', function(event) {
         if (event.data === 'fullscreen') {
