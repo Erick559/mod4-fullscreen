@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
     <title>mod4_v1</title>
     <style>
         html, body, #SBContentWrapper {
@@ -23,6 +23,25 @@
             top: 0px;
             bottom: 0;
             right: 0;
+        }
+
+        @media only screen and (max-width: 650px) {
+            #SBContentWrapper {
+                position: fixed !important;
+                width: 100% !important;
+                height: 100% !important;
+                top: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            #SBContentWrapper iframe {
+                width: 100% !important;
+                height: 100% !important;
+                transform: scale(1); /* Override any scaling */
+                object-fit: contain !important;
+            }
         }
 
         /* @media only screen and (max-width:650px) {
@@ -97,6 +116,17 @@
         }
     }
 
+    function adjustFullscreenHeight() {
+        const wrapper = document.getElementById('SB4ContentWrapper');
+        if (document.fullscreenElement) {
+            wrapper.style.height = `${window.innerHeight}px`;
+        }
+    }
+
+    document.addEventListener('fullscreenchange', adjustFullscreenHeight);
+    document.addEventListener('webkitfullscreenchange', adjustFullscreenHeight);
+    document.addEventListener('mozfullscreenchange', adjustFullscreenHeight);
+
     window.addEventListener('message', function(event) {
         if (event.data === 'fullscreen') {
             const wrapper = document.getElementById('SBContentWrapper');
@@ -106,6 +136,6 @@
         }
     });
 </script>
-<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 2,"scaleDesktop": 2}'></script>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 1,"scaleDesktop": 1}'></script>
 </body>
 </html>
