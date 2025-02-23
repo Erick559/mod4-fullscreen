@@ -36,14 +36,35 @@
             }
 
             #SBContentWrapper:fullscreen {
-                overflow: visible;
+                overflow: hidden;
+                width: 100% !important;
+                height: 100% !important;
+                background: #000;
             }
 
             #SBContentWrapper:fullscreen iframe {
-                width: 100vh !important;
-                height: 100vw !important;
-                transform: scale(5); /* Override any scaling */
-                object-fit: cover !important;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain;
+                transform: none !important;
+                position: relative;
+                margin: 0 auto;
+            }
+
+            @media (orientation: portrait) {
+                #SBContentWrapper:fullscreen iframe {
+                    width: 100% !important;
+                    height: auto !important;
+                    min-height: 100%;
+                }
+            }
+
+            @media (orientation: landscape) {
+                #SBContentWrapper:fullscreen iframe {
+                    height: 100% !important;
+                    width: auto !important;
+                    min-width: 100%;
+                }
             }
         }
     </style>
@@ -51,12 +72,13 @@
 <body>
 <div id="SBContentWrapper" style="overflow: hidden;"></div>
 <script>
+    const isAndroid = /android/i.test(navigator.userAgent);
+
     function toggleFullscreen(element) {
         if (!document.fullscreenElement &&
             !document.mozFullScreenElement &&
             !document.webkitFullscreenElement &&
             !document.msFullscreenElement) {
-            // Entering fullscreen
             if (element.requestFullscreen) {
                 element.requestFullscreen();
             } else if (element.mozRequestFullScreen) {
@@ -67,7 +89,6 @@
                 element.msRequestFullscreen();
             }
         } else {
-            // Exiting fullscreen
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.mozCancelFullScreen) {
@@ -80,18 +101,24 @@
         }
     }
 
-    // function adjustFullscreenHeight() {
-    //     const wrapper = document.getElementById('SB4Content');
-    //     const sbWrapper = document.getElementById('SBContentWrapper');
-    //     if (document.fullscreenElement) {
-    //         // wrapper.style.height = `${window.innerHeight}px`;
-    //         wrapper.style.width = `${window.innerWidth * 3 }px`;
-    //     }
-    // }
+    function handleResize() {
+        const wrapper = document.getElementById('SBContentWrapper');
+        if (wrapper && document.fullscreenElement && isAndroid) {
+            const iframe = wrapper.querySelector('iframe');
+            if (iframe) {
+                if(window.innerHeight > window.innerWidth) {
+                    iframe.style.width = '100%';
+                    iframe.style.height = 'auto';
+                } else {
+                    iframe.style.height = '100%';
+                    iframe.style.width = 'auto';
+                }
+            }
+        }
+    }
 
-    // document.addEventListener('fullscreenchange', adjustFullscreenHeight);
-    // document.addEventListener('webkitfullscreenchange', adjustFullscreenHeight);
-    // document.addEventListener('mozfullscreenchange', adjustFullscreenHeight);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
 
     window.addEventListener('message', function(event) {
         if (event.data === 'fullscreen') {
@@ -102,6 +129,8 @@
         }
     });
 </script>
-<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 1,"scaleDesktop": 1}'></script>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" 
+        data-wrapper-id="SBContentWrapper" 
+        data-config='{ "scaleMobile": 1,"scaleDesktop": 1}'></script>
 </body>
 </html>
