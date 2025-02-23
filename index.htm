@@ -101,24 +101,24 @@
         }
     }
 
-    function handleResize() {
-        const wrapper = document.getElementById('SBContentWrapper');
-        if (wrapper && document.fullscreenElement && isAndroid) {
-            const iframe = wrapper.querySelector('iframe');
-            if (iframe) {
-                if(window.innerHeight > window.innerWidth) {
-                    iframe.style.width = '100%';
-                    iframe.style.height = 'auto';
-                } else {
-                    iframe.style.height = '100%';
-                    iframe.style.width = 'auto';
-                }
-            }
-        }
-    }
+    // function handleResize() {
+    //     const wrapper = document.getElementById('SBContentWrapper');
+    //     if (wrapper && document.fullscreenElement && isAndroid) {
+    //         const iframe = wrapper.querySelector('iframe');
+    //         if (iframe) {
+    //             if(window.innerHeight > window.innerWidth) {
+    //                 iframe.style.width = '100%';
+    //                 iframe.style.height = 'auto';
+    //             } else {
+    //                 iframe.style.height = '100%';
+    //                 iframe.style.width = 'auto';
+    //             }
+    //         }
+    //     }
+    // }
 
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('orientationchange', handleResize);
+    // window.addEventListener('resize', handleResize);
+    // window.addEventListener('orientationchange', handleResize);
 
     window.addEventListener('message', function(event) {
         if (event.data === 'fullscreen') {
