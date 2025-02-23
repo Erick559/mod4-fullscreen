@@ -37,7 +37,7 @@
 
             #SBContentWrapper:fullscreen {
                 overflow: visible;
-                object-fit: cover;
+                object-fit: contain;
             }
 
             #SBContentWrapper:fullscreen iframe {
@@ -84,8 +84,8 @@
         const wrapper = document.getElementById('SBContentWrapper');
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
-            const originalWidth = 800; // Replace with your content's actual width
-            const originalHeight = 600; // Replace with your content's actual height
+            const originalWidth = 1280; // Replace with your content's actual width
+            const originalHeight = 720; // Replace with your content's actual height
 
             // Calculate scale factors to cover the screen
             const scaleWidth = wrapper.clientWidth / originalWidth;
