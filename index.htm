@@ -83,8 +83,8 @@
         const wrapper = document.getElementById('SBContentWrapper');
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
-            const originalWidth = 800; // Replace with actual original width
-            const originalHeight = 600; // Replace with actual original height
+            const originalWidth = 485; // Replace with actual original width
+            const originalHeight = 763; // Replace with actual original height
             const scaleWidth = wrapper.clientWidth / originalWidth;
             const scaleHeight = wrapper.clientHeight / originalHeight;
             const scale = Math.min(scaleWidth, scaleHeight);
@@ -112,11 +112,11 @@
             // Exiting fullscreen
             const iframe = wrapper.querySelector('iframe');
             if (iframe) {
-                iframe.style.width = '';
-                iframe.style.height = '';
-                iframe.style.transform = '';
-                iframe.style.marginTop = '';
-                iframe.style.marginLeft = '';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.transform = 'none';
+                iframe.style.marginTop = '0px';
+                iframe.style.marginLeft = '0px';
             }
             window.removeEventListener('resize', adjustIframeScaling);
         }
