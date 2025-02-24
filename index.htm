@@ -84,7 +84,7 @@
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
             const originalWidth = 1280; // Replace with actual original width
-            const originalHeight = 800; // Replace with actual original height
+            const originalHeight = 720; // Replace with actual original height
             const scaleWidth = wrapper.clientWidth / originalWidth;
             const scaleHeight = wrapper.clientHeight / originalHeight;
             const scale = Math.min(scaleWidth, scaleHeight);
@@ -106,8 +106,7 @@
         const wrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement === wrapper) {
             // Entering fullscreen
-            // adjustIframeScaling();
-            window.addEventListener('resize', adjustIframeScaling);
+            adjustIframeScaling();
         } else {
             // Exiting fullscreen
             const iframe = wrapper.querySelector('iframe');
