@@ -10,8 +10,8 @@
             margin: 0;
             padding: 0;
             font-family: Helvetica, Arial, Verdana, sans-serif;
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            width: 100%;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;
@@ -36,11 +36,12 @@
             }
 
             #SBContentWrapper:fullscreen {
-                overflow: visible !important;
+                overflow: scroll !important;
             }
 
             #SBContentWrapper:fullscreen iframe {
                 position: absolute !important;
+                object-fit: cover;
                 top: 0 !important;
                 left: 0 !important;
             }
@@ -83,22 +84,23 @@
         const wrapper = document.getElementById('SBContentWrapper');
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
-            const originalWidth = 1280; // Replace with actual original width
-            const originalHeight = 720; // Replace with actual original height
+            const originalWidth = 1366; // Replace with your content's actual width
+            const originalHeight = 800; // Replace with your content's actual height
+
+            // Calculate scale factors to cover the screen
             const scaleWidth = wrapper.clientWidth / originalWidth;
             const scaleHeight = wrapper.clientHeight / originalHeight;
-            const scale = Math.min(scaleWidth, scaleHeight);
+            const scale = Math.max(scaleWidth, scaleHeight); // Use the larger scale to cover
+
+            // Set iframe dimensions and scale
             iframe.style.width = `${originalWidth}px`;
             iframe.style.height = `${originalHeight}px`;
             iframe.style.transform = `scale(${scale})`;
             iframe.style.transformOrigin = 'top left';
-            iframe.style.marginTop = '0';
-            iframe.style.marginLeft = '0';
-            if (scaleWidth < scaleHeight) {
-                iframe.style.marginTop = `${(wrapper.clientHeight - originalHeight * scale) / 2}px`;
-            } else {
-                iframe.style.marginLeft = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
-            }
+
+            // Center the iframe to crop evenly
+            iframe.style.marginTop = `${(wrapper.clientHeight - originalHeight * scale) / 2}px`;
+            iframe.style.marginLeft = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
         }
     }
 
@@ -107,6 +109,7 @@
         if (document.fullscreenElement === wrapper) {
             // Entering fullscreen
             adjustIframeScaling();
+            window.addEventListener('resize', adjustIframeScaling);
         } else {
             // Exiting fullscreen
             const iframe = wrapper.querySelector('iframe');
