@@ -96,7 +96,9 @@
             iframe.style.width = `${originalWidth}px`;
             iframe.style.height = `${originalHeight}px`;
             iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = 'center center'; 
+            iframe.style.transformOrigin = 'center center';
+            iframe.style.marginLeft = '0';
+            iframe.style.marginTop = '0';
 
             // Center the iframe to crop evenly
             iframe.style.marginLeft = `${(wrapper.clientWidth - scaledWidth) / 2}px`;
