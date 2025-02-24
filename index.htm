@@ -26,24 +26,16 @@
         }
 
         @media only screen and (max-width: 650px) {
-            #SBContentWrapper {
+            #SBContentWrapper:fullscreen iframe {
                 width: 100% !important;
                 height: 100% !important;
+                position: absolute !important;
                 top: 0 !important;
                 left: 0 !important;
                 margin: 0 !important;
                 padding: 0 !important;
-            }
-
-            #SBContentWrapper:fullscreen {
-                overflow: scroll !important;
-            }
-
-            #SBContentWrapper:fullscreen iframe {
-                position: absolute !important;
-                object-fit: cover;
-                top: 0 !important;
-                left: 0 !important;
+                transform: none !important;
+                object-fit: contain;
             }
         }
     </style>
@@ -74,7 +66,6 @@
             !document.mozFullScreenElement &&
             !document.webkitFullscreenElement &&
             !document.msFullscreenElement) {
-            // Entering fullscreen
             if (element.requestFullscreen) {
                 element.requestFullscreen();
             } else if (element.mozRequestFullScreen) {
@@ -85,7 +76,6 @@
                 element.msRequestFullscreen();
             }
         } else {
-            // Exiting fullscreen
             if (document.exitFullscreen) {
                 document.exitFullscreen();
             } else if (document.mozCancelFullScreen) {
@@ -99,36 +89,14 @@
     }
 
     function adjustIframeScaling() {
-        const wrapper = document.getElementById('SBContentWrapper');
-        const iframe = wrapper.querySelector('iframe');
-        if (iframe) {
-            const originalWidth = 1280; // Replace with your content's actual width
-            const originalHeight = 720; // Replace with your content's actual height
-
-            // Calculate scale factors to cover the screen
-            const scaleWidth = wrapper.clientWidth / originalWidth;
-            const scaleHeight = wrapper.clientHeight / originalHeight;
-            const scale = Math.min(scaleWidth, scaleHeight); // Use the larger scale to cover
-
-            // Set iframe dimensions and scale
-            iframe.style.width = `${originalWidth}px`;
-            iframe.style.height = `${originalHeight}px`;
-            iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = 'top left';
-
-            // Center the iframe to crop evenly
-            iframe.style.marginTop = `${(wrapper.clientHeight - originalHeight * scale) / 2}px`;
-            iframe.style.marginLeft = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
-        }
+        // No manual scaling needed; CSS handles it
     }
 
     document.addEventListener('fullscreenchange', function() {
         const wrapper = document.getElementById('SBContentWrapper');
         if (document.fullscreenElement === wrapper) {
-            // Entering fullscreen
             adjustIframeScaling();
         } else {
-            // Exiting fullscreen
             const iframe = wrapper.querySelector('iframe');
             if (iframe && initialWidth && initialHeight) {
                 iframe.style.width = `${initialWidth}px`;
@@ -150,6 +118,6 @@
         }
     });
 </script>
-<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 1,"scaleDesktop": 1}'></script>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 1, "scaleDesktop": 1}'></script>
 </body>
 </html>
