@@ -41,6 +41,7 @@
 
             #SBContentWrapper:fullscreen iframe {
                 position: absolute !important;
+                overflow: scroll !important;
                 object-fit: cover;
                 top: 0 !important;
                 left: 0 !important;
@@ -90,7 +91,7 @@
             // Calculate scale factors to cover the screen
             const scaleWidth = wrapper.clientWidth / originalWidth;
             const scaleHeight = wrapper.clientHeight / originalHeight;
-            const scale = Math.min(scaleWidth, scaleHeight); // Use the larger scale to cover
+            const scale = Math.max(scaleWidth, scaleHeight); // Use the larger scale to cover
 
             // Set iframe dimensions and scale
             iframe.style.width = `${originalWidth}px`;
