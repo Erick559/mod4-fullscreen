@@ -109,7 +109,6 @@
         if (document.fullscreenElement === wrapper) {
             // Entering fullscreen
             adjustIframeScaling();
-            window.addEventListener('resize', adjustIframeScaling);
         } else {
             // Exiting fullscreen
             const iframe = wrapper.querySelector('iframe');
