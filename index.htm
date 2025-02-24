@@ -51,6 +51,24 @@
 <body>
 <div id="SBContentWrapper" style="overflow: hidden;"></div>
 <script>
+    let initialWidth;
+    let initialHeight;
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.addedNodes.length) {
+                const iframe = document.querySelector('#SBContentWrapper iframe');
+                if (iframe) {
+                    initialWidth = iframe.offsetWidth;
+                    initialHeight = iframe.offsetHeight;
+                    observer.disconnect();
+                }
+            }
+        });
+    });
+
+    observer.observe(document.getElementById('SBContentWrapper'), { childList: true });
+
     function toggleFullscreen(element) {
         if (!document.fullscreenElement &&
             !document.mozFullScreenElement &&
@@ -85,7 +103,7 @@
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
             const originalWidth = 1280; // Replace with your content's actual width
-            const originalHeight = 720; // Replace with your content's actual height
+            const originalHeight = 960; // Replace with your content's actual height
 
             // Calculate scale factors to cover the screen
             const scaleWidth = wrapper.clientWidth / originalWidth;
@@ -112,14 +130,14 @@
         } else {
             // Exiting fullscreen
             const iframe = wrapper.querySelector('iframe');
-            if (iframe) {
-                iframe.style.width = '';
-                iframe.style.height = '';
-                iframe.style.transform = '';
+            if (iframe && initialWidth && initialHeight) {
+                iframe.style.width = `${initialWidth}px`;
+                iframe.style.height = `${initialHeight}px`;
+                iframe.style.transform = 'none';
                 iframe.style.marginTop = '';
                 iframe.style.marginLeft = '';
+                window.dispatchEvent(new Event('resize'));
             }
-            // window.removeEventListener('resize', adjustIframeScaling);
         }
     });
 
