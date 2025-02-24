@@ -84,13 +84,13 @@
         const wrapper = document.getElementById('SBContentWrapper');
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
-            const originalWidth = 1800; // Replace with your content's actual width
+            const originalWidth = 1280; // Replace with your content's actual width
             const originalHeight = 720; // Replace with your content's actual height
 
             // Calculate scale factors to cover the screen
             const scaleWidth = wrapper.clientWidth / originalWidth;
             const scaleHeight = wrapper.clientHeight / originalHeight;
-            const scale = Math.min(scaleWidth, scaleHeight); // Use the larger scale to cover
+            const scale = Math.max(scaleWidth, scaleHeight); // Use the larger scale to cover
 
             // Set iframe dimensions and scale
             iframe.style.width = `${originalWidth}px`;
@@ -101,8 +101,6 @@
             // Center the iframe to crop evenly
             iframe.style.marginTop = `${(wrapper.clientHeight - originalHeight * scale) / 2}px`;
             iframe.style.marginLeft = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
-            iframe.style.marginRight = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
-
         }
     }
 
