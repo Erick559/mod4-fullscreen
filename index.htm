@@ -85,25 +85,32 @@
         const wrapper = document.getElementById('SBContentWrapper');
         const iframe = wrapper.querySelector('iframe');
         if (iframe) {
-            const originalWidth = 1280; // Replace with your content's actual width
-            const originalHeight = 800; // Replace with your content's actual height
-
-            // Calculate scale factors to cover the screen
-            const scaleWidth = wrapper.clientWidth / originalWidth;
-            const scaleHeight = wrapper.clientHeight / originalHeight;
-            const scale = Math.max(scaleWidth, scaleHeight); // Use the larger scale to cover
-
-            // Set iframe dimensions and scale
-            iframe.style.width = `${originalWidth}px`;
-            iframe.style.height = `${originalHeight}px`;
-            iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = 'top left';
-            iframe.style.marginLeft = '0';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.transform = 'none';
             iframe.style.marginTop = '0';
+            iframe.style.marginLeft = '0';
 
-            // Center the iframe to crop evenly
-            iframe.style.marginLeft = `${(wrapper.clientWidth - scaledWidth) / 2}px`;
-            iframe.style.marginTop = `${(wrapper.clientHeight - scaledHeight) / 2}px`;
+
+            // const originalWidth = 1280; // Replace with your content's actual width
+            // const originalHeight = 800; // Replace with your content's actual height
+
+            // // Calculate scale factors to cover the screen
+            // const scaleWidth = wrapper.clientWidth / originalWidth;
+            // const scaleHeight = wrapper.clientHeight / originalHeight;
+            // const scale = Math.max(scaleWidth, scaleHeight); // Use the larger scale to cover
+
+            // // Set iframe dimensions and scale
+            // iframe.style.width = `${originalWidth}px`;
+            // iframe.style.height = `${originalHeight}px`;
+            // iframe.style.transform = `scale(${scale})`;
+            // iframe.style.transformOrigin = 'top left';
+            // iframe.style.marginLeft = '0';
+            // iframe.style.marginTop = '0';
+
+            // // Center the iframe to crop evenly
+            // iframe.style.marginLeft = `${(wrapper.clientWidth - scaledWidth) / 2}px`;
+            // iframe.style.marginTop = `${(wrapper.clientHeight - scaledHeight) / 2}px`;
         }
     }
 
