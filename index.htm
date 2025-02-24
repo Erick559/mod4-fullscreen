@@ -36,7 +36,7 @@
             }
 
             #SBContentWrapper:fullscreen {
-                overflow: scroll !important;
+                overflow: auto !important;
             }
 
             #SBContentWrapper:fullscreen iframe {
@@ -96,11 +96,11 @@
             iframe.style.width = `${originalWidth}px`;
             iframe.style.height = `${originalHeight}px`;
             iframe.style.transform = `scale(${scale})`;
-            iframe.style.transformOrigin = 'top left';
+            iframe.style.transformOrigin = 'center center'; 
 
             // Center the iframe to crop evenly
-            iframe.style.marginTop = `${(wrapper.clientHeight - originalHeight * scale) / 2}px`;
-            iframe.style.marginLeft = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
+            iframe.style.marginLeft = `${(wrapper.clientWidth - scaledWidth) / 2}px`;
+            iframe.style.marginTop = `${(wrapper.clientHeight - scaledHeight) / 2}px`;
         }
     }
 
