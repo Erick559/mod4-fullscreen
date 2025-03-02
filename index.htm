@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no viewport-fit=cover">
+    <title>mod4_v1</title>
+    <style>
+        html, body, #SBContentWrapper {
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Arial, Verdana, sans-serif;
+            height: 100%;
+            width: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            bottom: 0;
+            right: 0;
+        }
+
+        @media only screen and (max-width: 650px) {
+            /* #SBContentWrapper {
+                width: 100% !important;
+                height: 100% !important;
+                top: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            } */
+
+            #SBContentWrapper:fullscreen {
+                overflow: scroll !important;
+            }
+
+            #SBContentWrapper:fullscreen iframe {
+                position: absolute !important;
+                object-fit: cover;
+                top: 0 !important;
+                left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="SBContentWrapper" style="overflow: hidden;"></div>
+<script>
+    function toggleFullscreen(element) {
+        if (!document.fullscreenElement &&
+            !document.mozFullScreenElement &&
+            !document.webkitFullscreenElement &&
+            !document.msFullscreenElement) {
+            // Entering fullscreen
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        } else {
+            // Exiting fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    function adjustIframeScaling() {
+        const wrapper = document.getElementById('SBContentWrapper');
+        const iframe = wrapper.querySelector('iframe');
+        if (iframe) {
+            const originalWidth = 1280; // Replace with your content's actual width
+            const originalHeight = 720; // Replace with your content's actual height
+
+            // Calculate scale factors to cover the screen
+            const scaleWidth = wrapper.clientWidth / originalWidth;
+            const scaleHeight = wrapper.clientHeight / originalHeight;
+            const scale = Math.min(scaleWidth, scaleHeight); // Use the larger scale to cover
+
+            // Set iframe dimensions and scale
+            iframe.style.width = `${originalWidth}px`;
+            iframe.style.height = `${originalHeight}px`;
+            iframe.style.transform = `scale(${scale})`;
+            iframe.style.transformOrigin = 'top left';
+
+            // Center the iframe to crop evenly
+            iframe.style.marginTop = `${(wrapper.clientHeight - originalHeight * scale) / 2}px`;
+            iframe.style.marginLeft = `${(wrapper.clientWidth - originalWidth * scale) / 2}px`;
+        }
+    }
+
+    document.addEventListener('fullscreenchange', function() {
+        const wrapper = document.getElementById('SBContentWrapper');
+        if (document.fullscreenElement === wrapper) {
+            // Entering fullscreen
+            adjustIframeScaling();
+        } else {
+            // Exiting fullscreen
+            const iframe = wrapper.querySelector('iframe');
+            if (iframe) {
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.transform = 'none';
+                iframe.style.marginTop = '0';
+                iframe.style.marginLeft = '0';
+            }
+            // window.removeEventListener('resize', adjustIframeScaling);
+        }
+    });
+
+    window.addEventListener('message', function(event) {
+        if (event.data === 'fullscreen') {
+            const wrapper = document.getElementById('SBContentWrapper');
+            if (wrapper) {
+                toggleFullscreen(wrapper);
+            }
+        }
+    });
+</script>
+<script src="sb-init.js?bust=1.0.0.202404300805_1739863231074" data-wrapper-id="SBContentWrapper" data-config='{ "scaleMobile": 1,"scaleDesktop": 1}'></script>
+</body>
+</html>
